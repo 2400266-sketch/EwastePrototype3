@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centers — E-Waste Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste Disposal Management Website</div>
+          <div class="app-tag">Centers</div>
+        </div>
+      </div>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register.html" class="nav-link">Register Device</a>
+        <a href="request.html" class="nav-link">Request Pickup</a>
+        <a href="centers.html" class="nav-link active">Centers</a>
+         <a href="manage.html" class="nav-link">Manage My Data</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section container">
+    <h2>Nearest Disposal Centers</h2>
+    <p class="muted">Sample certified centers (mock map). Click "Navigate" to open directions in Google Maps.</p>
+
+    <div class="centers-grid">
+      <div class="map-card card">
+        <div class="map-img">
+          <!-- mock map image (keeps design) -->
+          <img src="https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?auto=format&fit=crop&w=1600&q=80" alt="recycling center">
+        </div>
+        <ul id="centers-list" class="center-list"></ul>
+      </div>
+
+      <div class="card info-card">
+        <h3>Preparing devices for disposal</h3>
+        <ul>
+          <li>Backup and factory reset devices if possible.</li>
+          <li>Remove SIM / memory cards and personal accessories.</li>
+          <li>Remove batteries if safe; otherwise, keep device intact and mark condition.</li>
+        </ul>
+        <div style="margin-top:14px">
+          <button id="use-location" class="btn ghost small">Use my location</button>
+          <p class="muted small">
+  By using this feature, you allow the website to access your device location for finding nearby e-waste centers.  
+  No location data is stored.
+</p>
+
+          <div id="location-status" class="muted small" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="ewaste.js" defer></script>
+</body>
+</html>

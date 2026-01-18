@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-Waste Disposal Management System — Home</title>
+  <meta name="description" content="E-Waste Disposal Management prototype — overview." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste Disposal Management Website</div>
+        </div>
+      </div>
+
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="register.html" class="nav-link">Register Device</a>
+        <a href="request.html" class="nav-link">Request Pickup</a>
+        <a href="centers.html" class="nav-link">Centers</a>
+        <a href="manage.html" class="nav-link">Manage My Data</a>
+        <button id="open-login" class="btn small ghost">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" role="img" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title">Manage E-Waste Responsibly, And With Ease</h1>
+          <p class="lead">Register devices, schedule pickups, and find certified drop-offs. Specifically designed for usability, privacy, and real-world workflows.</p>
+          <div class="hero-cta">
+            <a href="register.html" class="btn primary">Register Device</a>
+          </div>
+        </div>
+
+        <div class="hero-card card">
+          <div class="stat">
+            <div class="stat-value" id="stat-devices">—</div>
+            <div class="stat-label">Devices registered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="stat-requests">—</div>
+            <div class="stat-label">Pickup requests</div>
+          </div>
+          <div class="stat-actions">
+            <a class="btn" href="register.html">View devices</a>
+            <button class="btn ghost" id="btn-clear-local">Clear demo data</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="overview-title">
+      <h2 id="overview-title">Quick overview</h2>
+      <p class="intro">This prototype demonstrates an offline-first e-waste management flow: account sign-in, device registration (IMEI scanning supported), disposal requests, and center lookup. All user data in this website is only stored locally in your browser as this platform is only a prototype.</p>
+      <div class="about-grid" style="margin-top:16px">
+        <article class="about-card card">
+          <h3>Protect the environment</h3>
+          <p>Divert toxins from landfills and recover valuable materials for reuse.</p>
+        </article>
+        <article class="about-card card">
+          <h3>Secure Registration Process</h3>
+          <p>Follow steps to register your device and have them securely disposed.</p>
+        </article>
+        <article class="about-card card">
+          <h3>Convenience</h3>
+          <p>Schedule pickups or find nearby certified drop-offs with certainty.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="ewaste.js" defer></script>
+</body>
+</html>

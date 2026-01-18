@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Request Pickup — E-Waste Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste ManagerE-Waste Disposal Management Website</div>
+          <div class="app-tag">Request Pickup</div>
+        </div>
+      </div>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register.html" class="nav-link">Register Device</a>
+        <a href="request.html" class="nav-link active">Request Pickup</a>
+        <a href="centers.html" class="nav-link">Centers</a>
+         <a href="manage.html" class="nav-link">Manage My Data</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section container">
+    <h2>Disposal Request (Pickup or Drop-off)</h2>
+    <p class="muted">Schedule a collection or indicate drop-off details. A confirmation popup will appear after submission.</p>
+
+    <div class="form-wrap">
+      <form id="request-form" class="card form" novalidate>
+        <label for="r_name">Full name <span class="req">*</span></label>
+        <input id="r_name" name="r_name" type="text" required placeholder="Full name">
+
+        <label for="r_contact">Contact (phone or email) <span class="req">*</span></label>
+        <input id="r_contact" name="r_contact" type="text" required placeholder="09xx-xxx-xxxx or you@example.com">
+
+        <label for="r_device">Device registered (optional)</label>
+        <select id="r_device" name="r_device">
+          <option value="">-- select a registered device --</option>
+        </select>
+
+        <label for="r_item">Item description</label>
+        <input id="r_item" name="r_item" type="text" placeholder="e.g., 2 mobile phones, 1 battery">
+
+        <label for="r_date">Preferred date</label>
+        <input id="r_date" name="r_date" type="date">
+
+        <label for="r_notes">Notes</label>
+        <textarea id="r_notes" name="r_notes" rows="3" placeholder="e.g., leave at guardhouse"></textarea>
+
+        <div class="form-actions">
+          <label class="consent-box">
+  <input type="checkbox" required>
+  I consent to the processing of my contact information for fulfilling my pickup request.
+</label>
+
+          <button type="submit" class="btn primary">Submit Request</button>
+          <button id="request-clear" type="button" class="btn ghost">Clear</button>
+        </div>
+
+        <div class="privacy muted">We only store your submissions locally for this demo.</div>
+      </form>
+
+      <aside class="card side-card">
+        <h3>Recent Requests</h3>
+        <div id="requests-list" class="requests-list"></div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="ewaste.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register Device — E-Waste Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste Disposal Management Website</div>
+          <div class="app-tag">Register Device</div>
+        </div>
+      </div>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register.html" class="nav-link active">Register Device</a>
+        <a href="request.html" class="nav-link">Request Pickup</a>
+        <a href="centers.html" class="nav-link">Centers</a>
+         <a href="manage.html" class="nav-link">Manage My Data</a>
+      </nav>
+    </div>
+  </header>
+
+<main class="section container">
+  <h2>Register Your Mobile Phone</h2>
+  <p class="intro">Answer the questions below to classify phone parts as recyclable or disposable. Optional: take a photo for documentation.</p>
+
+  <div class="form-wrap">
+   <form id="device-form" class="card form" novalidate>
+
+  <!-- NAME -->
+  <label for="owner">Owner / Identifier</label>
+  <input id="owner" type="text" placeholder="Your name or identifier">
+
+  <!-- PARTS TABLE (always visible) -->
+  <h3 class="section-title">Phone Parts Classification</h3>
+  <table class="parts-table">
+    <thead>
+      <tr>
+        <th>Phone Part</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="parts-list"></tbody>
+  </table>
+
+  <!-- CAMERA -->
+  <!-- CAMERA SECTION -->
+<h3 class="section-title">Device Photo (Optional)</h3>
+
+<video
+  id="camera-preview"
+  autoplay
+  playsinline
+  class="video-preview">
+</video>
+
+<div class="camera-actions">
+  <button type="button" id="start-camera" class="btn small ghost">
+    Start Camera
+  </button>
+  <button type="button" id="capture-photo" class="btn small ghost">
+    Capture Photo
+  </button>
+</div>
+
+<canvas id="photo-canvas" style="display:none;"></canvas>
+
+<h3 class="section-title">Device Condition Questions</h3>
+
+<label>Does the phone power on?</label>
+<select id="q_power">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+
+<label>Is the battery swollen, leaking, or damaged?</label>
+<select id="q_battery">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Is the screen cracked or broken with exposed internals?</label>
+<select id="q_screen">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Has the phone been exposed to water?</label>
+<select id="q_water">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Are there visible signs of corrosion or rust?</label>
+<select id="q_corrosion">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Did the phone experience overheating or fire damage?</label>
+<select id="q_fire">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Do the speakers produce distorted sound or no sound?</label>
+<select id="q_speaker">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Does the phone vibrate when powered on?</label>
+<select id="q_vibration">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+
+<label>Are the charging ports loose, burned, or not working?</label>
+<select id="q_ports">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>Is the casing heavily cracked or chemically contaminated?</label>
+<select id="q_casing">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+
+  <!-- ACTIONS -->
+  <div class="form-actions">
+    <button type="submit" class="btn primary" id="register-btn">Register Device</button>
+    <button type="button" id="clear-form" class="btn ghost">Clear Form</button>
+  </div>
+
+</form>
+
+
+    <aside class="card side-card">
+      <h3>Registered Devices</h3>
+      <div id="registered-list"></div>
+    </aside>
+  </div>
+</main>
+
+
+  <script src="ewaste.js" defer></script>
+</body>
+</html>

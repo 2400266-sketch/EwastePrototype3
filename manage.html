@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manage My Data — E-Waste Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+  <style>
+    /* Manage My Data preview box */
+    .data-box {
+      background: #f6f6f6;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .btn.danger {
+      background: #c62828;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+    .btn.danger:hover {
+      background: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste E-Waste Disposal Management Website</div>
+          <div class="app-tag">Manage My Data</div>
+        </div>
+      </div>
+      <nav class="links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="register.html">Register Device</a>
+        <a class="nav-link" href="request.html">Request Pickup</a>
+        <a class="nav-link" href="centers.html">Centers</a>
+        <a class="nav-link active" href="manage.html">Manage My Data</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section container">
+    <h2>Review or Delete My Data</h2>
+    <p class="muted">Below is all the information stored locally in your browser.</p>
+
+    <div class="card" style="margin-top:20px;">
+      <h3>Your Stored Information</h3>
+      <pre id="data-preview" class="data-box"></pre>
+
+      <button id="delete-data" class="btn danger" style="margin-top:15px;">
+        Delete All My Data
+      </button>
+
+      <p class="muted small" style="margin-top:10px;">
+        This will permanently remove all data stored locally (login info, devices, pickup requests).
+      </p>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="manage-data.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-Waste Manager — Clean Tech Prototype</title>
+  <meta name="description" content="E-Waste Disposal Management prototype — device registration + disposal requests." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ewaste.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="nav-wrap">
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">♻︎</div>
+        <div class="brand-text">
+          <div class="app-title">E-Waste Manager</div>
+          <div class="app-tag">Secure • Practical • Sustainable</div>
+        </div>
+      </div>
+
+      <nav class="links" aria-label="Primary navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#device" class="nav-link">Register Device</a>
+        <a href="#request" class="nav-link">Request Pickup</a>
+        <a href="#centers" class="nav-link">Centers</a>
+        <button id="open-login" class="btn small ghost">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" role="img" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title">Manage E-Waste Responsibly, Easily</h1>
+          <p class="lead">Register devices, schedule pickups, and find certified drop-offs — designed for usability, privacy, and real-world workflows.</p>
+          <div class="hero-cta">
+            <a href="#device" class="btn primary">Register Device</a>
+            <a href="#request" class="btn ghost">Request Pickup</a>
+          </div>
+          <div class="hero-pill-row">
+            <div class="pill">Local demo storage</div>
+            <div class="pill">Mobile & desktop</div>
+            <div class="pill">Data privacy focused</div>
+          </div>
+        </div>
+
+        <div class="hero-card card">
+          <div class="stat">
+            <div class="stat-value" id="stat-devices">—</div>
+            <div class="stat-label">Devices registered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="stat-requests">—</div>
+            <div class="stat-label">Pickup requests</div>
+          </div>
+          <div class="stat-actions">
+            <button class="btn" id="btn-view-all">View all items</button>
+            <button class="btn ghost" id="btn-clear-local">Clear demo data</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container" aria-labelledby="about-title">
+      <h2 id="about-title">Why this matters</h2>
+      <p class="intro">Electronic waste contains both recoverable materials and hazardous components. Properly registering and disposing of devices prevents pollution, protects personal data, and supports circular use of resources.</p>
+
+      <div class="about-grid">
+        <article class="about-card card">
+          <h3>Protect the environment</h3>
+          <p>Divert toxins from landfills and recover valuable materials for reuse.</p>
+        </article>
+        <article class="about-card card">
+          <h3>Secure data</h3>
+          <p>Register devices and follow clear steps to backup and wipe data before disposal.</p>
+        </article>
+        <article class="about-card card">
+          <h3>Convenience</h3>
+          <p>Schedule pickups or find nearby certified drop-offs — no guesswork.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DEVICE REGISTRATION -->
+    <section id="device" class="section container" aria-labelledby="device-title">
+      <h2 id="device-title">Device Registration</h2>
+      <p class="muted">Record device details so disposal centers can prepare and classify items correctly. You can scan an IMEI/barcode with your camera or enter it manually.</p>
+
+      <div class="form-wrap">
+        <form id="device-form" class="card form" novalidate>
+          <label for="d_owner">Owner name <span class="req">*</span></label>
+          <input id="d_owner" name="d_owner" type="text" required placeholder="Full name">
+
+          <label for="d_brand">Brand</label>
+          <input id="d_brand" name="d_brand" type="text" placeholder="e.g., Samsung">
+
+          <label for="d_model">Model</label>
+          <input id="d_model" name="d_model" type="text" placeholder="e.g., Galaxy S10">
+
+          <label for="d_imei">IMEI / Serial (optional)</label>
+          <div class="imei-row">
+            <input id="d_imei" name="d_imei" type="text" inputmode="numeric" pattern="\d{15}" placeholder="Scan or type IMEI (15 digits)">
+            <button id="open-scanner" type="button" class="btn small ghost">Open Scanner</button>
+          </div>
+          <div id="scanner-ui" class="scanner-ui" aria-hidden="true">
+            <video id="scanner-preview" playsinline muted></video>
+            <div class="scanner-controls">
+              <button id="stop-scanner" type="button" class="btn small ghost">Stop</button>
+              <label class="file-scan">
+                <input id="upload-image" type="file" accept="image/*">
+                Upload image
+              </label>
+              <div id="scanner-status" class="muted small">Scanner ready</div>
+            </div>
+            <div class="scanner-help muted small">If your browser doesn't support live barcode scanning, upload a photo of the barcode/IMEI or paste it manually.</div>
+          </div>
+
+          <label for="d_condition">Condition</label>
+          <select id="d_condition" name="d_condition">
+            <option>Working</option>
+            <option>Partially working</option>
+            <option>Broken</option>
+            <option>Battery damaged</option>
+          </select>
+
+          <label for="d_notes">Notes</label>
+          <textarea id="d_notes" name="d_notes" rows="3" placeholder="e.g., battery swollen, screen cracked"></textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Register Device</button>
+            <button id="device-clear" type="button" class="btn ghost">Clear</button>
+          </div>
+
+          <div class="privacy muted">Privacy: demo stores items locally in your browser only.</div>
+        </form>
+
+        <aside class="card side-card">
+          <h3>Registered Devices</h3>
+          <div id="devices-list" class="requests-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- DISPOSAL REQUEST -->
+    <section id="request" class="section container" aria-labelledby="request-title">
+      <h2 id="request-title">Disposal Request (Pickup or Drop-off)</h2>
+      <p class="muted">Schedule a collection or indicate drop-off details. A confirmation popup will appear after submission.</p>
+
+      <div class="form-wrap">
+        <form id="request-form" class="card form" novalidate>
+          <label for="r_name">Full name <span class="req">*</span></label>
+          <input id="r_name" name="r_name" type="text" required placeholder="Full name">
+
+          <label for="r_contact">Contact (phone or email) <span class="req">*</span></label>
+          <input id="r_contact" name="r_contact" type="text" required placeholder="09xx-xxx-xxxx or you@example.com">
+
+          <label for="r_device">Device registered (optional)</label>
+          <select id="r_device" name="r_device">
+            <option value="">-- select a registered device --</option>
+          </select>
+
+          <label for="r_item">Item description</label>
+          <input id="r_item" name="r_item" type="text" placeholder="e.g., 2 mobile phones, 1 battery">
+
+          <label for="r_date">Preferred date</label>
+          <input id="r_date" name="r_date" type="date">
+
+          <label for="r_notes">Notes</label>
+          <textarea id="r_notes" name="r_notes" rows="3" placeholder="e.g., leave at guardhouse"></textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Submit Request</button>
+            <button id="request-clear" type="button" class="btn ghost">Clear</button>
+          </div>
+
+          <div class="privacy muted">We only store your submissions locally for this demo.</div>
+        </form>
+
+        <aside class="card side-card">
+          <h3>Recent Requests</h3>
+          <div id="requests-list" class="requests-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CENTERS -->
+    <section id="centers" class="section container" aria-labelledby="centers-title">
+      <h2 id="centers-title">Nearest Disposal Centers</h2>
+      <p class="muted">Sample certified centers (replace with real data or map integration later).</p>
+
+      <div class="centers-grid">
+        <div class="map-card card">
+          <div class="map-img">
+            <img src="https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?auto=format&fit=crop&w=1600&q=80" alt="recycling center">
+          </div>
+          <ul id="centers-list" class="center-list"></ul>
+        </div>
+
+        <div class="card info-card">
+          <h3>Preparing devices for disposal</h3>
+          <ul>
+            <li>Backup and factory reset devices if possible.</li>
+            <li>Remove SIM / memory cards and personal accessories.</li>
+            <li>Remove batteries if safe; otherwise, keep device intact and mark condition.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact" class="footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>E-Waste Manager</strong>
+          <p class="muted small">Demo prototype — built for research and testing. No external servers used.</p>
+        </div>
+        <div class="footer-actions">
+          <a href="#home" class="muted link">Back to top</a>
+          <a href="#device" class="btn small primary">Register Device</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <button class="modal-close" id="close-auth" aria-label="Close">✕</button>
+      <h3 id="auth-title">Account (demo)</h3>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Login</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <div class="tab-panels">
+        <form id="login-form" class="auth-form">
+          <label for="login-identifier">Email or phone</label>
+          <input id="login-identifier" required placeholder="you@example.com">
+          <label for="login-pass">Password</label>
+          <input id="login-pass" type="password" required placeholder="••••••">
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Sign in</button>
+          </div>
+        </form>
+
+        <form id="register-form" class="auth-form hidden">
+          <label for="reg-name">Full name</label>
+          <input id="reg-name" placeholder="Your name">
+          <label for="reg-identifier">Email or phone</label>
+          <input id="reg-identifier" placeholder="you@example.com">
+          <label for="reg-pass">Password</label>
+          <input id="reg-pass" type="password" placeholder="Create a password">
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Create account</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="muted small" style="margin-top:12px">Demo accounts are local-only and not secure — for presentation only.</div>
+    </div>
+  </div>
+
+  <!-- Confirmation popup (custom) -->
+  <div id="confirm" class="confirm" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="confirm-panel">
+      <div id="confirm-message"></div>
+      <div style="margin-top:12px;text-align:right">
+        <button id="confirm-ok" class="btn primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="ewaste.js" defer></script>
+</body>
+</html>
