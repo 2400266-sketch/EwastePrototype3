@@ -564,3 +564,107 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRequestsList();
   renderStats();
 });
+
+// JS for managing stored data
+document.addEventListener("DOMContentLoaded", () => {
+
+  const ACC_KEY = 'ew_accounts_v1';
+  const DEV_KEY = 'ewaste_devices_v2';
+  const REQ_KEY = 'ewaste_requests_v2';
+  const SESSION_KEY = 'ew_session_v1';
+
+  const dataListEl = document.getElementById('data-list');
+  const deleteAllBtn = document.getElementById('delete-all');
+
+  function load(key) {
+    try { return JSON.parse(localStorage.getItem(key) || '[]'); } 
+    catch(e) { return []; }
+  }
+
+  function save(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  // Render all stored data
+  function renderDataList() {
+    if(!dataListEl) return;
+
+    const accounts = load(ACC_KEY);
+    const devices = load(DEV_KEY);
+    const requests = load(REQ_KEY);
+    const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+
+    let html = '';
+
+    if(session) {
+      html += `<div class="data-item">
+        <strong>Current Session:</strong> ${session.name} (${session.identifier})
+        <button class="delete-btn" data-type="session">Delete</button>
+      </div>`;
+    }
+
+    accounts.forEach((acc, idx) => {
+      html += `<div class="data-item">
+        <strong>Account:</strong> ${acc.name} (${acc.identifier})
+        <button class="delete-btn" data-type="account" data-index="${idx}">Delete</button>
+      </div>`;
+    });
+
+    devices.forEach((dev, idx) => {
+      html += `<div class="data-item">
+        <strong>Device:</strong> ${dev.brand} ${dev.model} (${dev.owner})
+        <button class="delete-btn" data-type="device" data-index="${idx}">Delete</button>
+      </div>`;
+    });
+
+    requests.forEach((req, idx) => {
+      html += `<div class="data-item">
+        <strong>Request:</strong> ${req.item || req.device} for ${req.name}
+        <button class="delete-btn" data-type="request" data-index="${idx}">Delete</button>
+      </div>`;
+    });
+
+    if(!html) html = '<p class="muted">No stored data found.</p>';
+
+    dataListEl.innerHTML = html;
+
+    // Attach delete handlers
+    dataListEl.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+        const idx = btn.dataset.index;
+
+        if(type === 'session') {
+          localStorage.removeItem(SESSION_KEY);
+        } else if(type === 'account') {
+          const arr = load(ACC_KEY);
+          arr.splice(idx,1);
+          save(ACC_KEY, arr);
+        } else if(type === 'device') {
+          const arr = load(DEV_KEY);
+          arr.splice(idx,1);
+          save(DEV_KEY, arr);
+        } else if(type === 'request') {
+          const arr = load(REQ_KEY);
+          arr.splice(idx,1);
+          save(REQ_KEY, arr);
+        }
+
+        renderDataList(); // Refresh list
+      });
+    });
+  }
+
+  // Delete all data button
+  deleteAllBtn?.addEventListener('click', () => {
+    if(!confirm('Are you sure you want to delete all your data?')) return;
+    localStorage.removeItem(ACC_KEY);
+    localStorage.removeItem(DEV_KEY);
+    localStorage.removeItem(REQ_KEY);
+    localStorage.removeItem(SESSION_KEY);
+    renderDataList();
+  });
+
+  // Initial render
+  renderDataList();
+});
