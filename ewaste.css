@@ -305,3 +305,52 @@ s
   font-style: italic;
   color: #888;
 }
+.manage-card {
+  max-width: 820px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.manage-card h2 {
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.data-item strong {
+  color: #a5ffd6;
+}
+
+.data-item button {
+  background: #c62828;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.data-item button:hover {
+  background: #b71c1c;
+}
+
+.warning-text {
+  margin-top: 14px;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
